@@ -1,0 +1,136 @@
+/* General Styles */
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --border-color: #d1d5db;
+    --bg-light: #f9fafb;
+  }
+  
+  /* Card Component */
+  .card {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  
+  .card-content {
+    padding: 12px;
+  }
+  
+  /* Input Component */
+  .input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.3s ease;
+  }
+  
+  .input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
+  }
+  
+  /* Button Component */
+  .button {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  .button:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+  }
+  
+  .card2 {
+    padding: 1rem; /* p-4 */
+    background-color: white; /* bg-white */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05); /* shadow-lg */
+    border-radius: 0.5rem; /* rounded-lg */
+  }
+
+  /* Option container */
+.option {
+  border: 1px solid #d1d5db; /* Matches border-gray-300 */
+  padding: 0.75rem; /* Matches p-3 */
+  border-radius: 0.375rem; /* Matches rounded-md */
+  cursor: pointer;
+  margin-bottom: 0.75rem; /* Matches mb-3 */
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem; /* Add spacing between child elements */
+}
+
+/* Hover effect */
+.option:hover {
+  background-color: #f9fafb; /* Light background for hover */
+}
+
+/* Selected state */
+.option.selected {
+  border-color: #3b82f6; /* Matches border-blue-500 */
+  background-color: #eff6ff; /* Matches bg-blue-50 */
+}
+
+/* Checkbox styling */
+.option input[type="checkbox"] {
+  margin-right: 0.5rem; /* Matches mr-2 */
+  transform: scale(1.2); /* Slightly enlarge the checkbox */
+  cursor: pointer;
+}
+
+/* Text styling */
+.option .font-medium {
+  font-weight: 500; /* Matches font-medium */
+  font-size: 1rem; /* Standard text size */
+  color: #111827; /* Dark text */
+}
+
+.option p {
+  margin: 0;
+  font-size: 0.875rem; /* Slightly smaller text for details */
+  color: #4b5563; /* Matches text-gray-700 */
+}
+
+.option p:first-of-type {
+  font-size: 1rem; /* Slightly larger font for the main title */
+  font-weight: bold; /* Bolder text for emphasis */
+}
+
+.custom-box {
+  border: 1px solid #01050b; /* Equivalent to Tailwind's default gray-300 */
+  padding: 12px; /* p-3 */
+  border-radius: 6px; /* rounded-md */
+  cursor: pointer; /* cursor-pointer */
+  margin-bottom: 12px; /* mb-3 */
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  background-color: #eaedf1;
+}
+
+.custom-box:hover {
+  border-color: #974545; /* Blue-500 on hover */
+  background-color: #96a0ae; /* Light blue background on hover */
+}
+
+.custom-class {
+  padding: 1rem; /* p-4 */
+  background-color: white; /* bg-white */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-lg */
+  border-radius: 0.5rem; /* rounded-lg */
+}
+
