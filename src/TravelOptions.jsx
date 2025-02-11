@@ -15,6 +15,8 @@ const TravelOptions = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [showData, setShowData] = useState(false);
+  const [currentuser, setCurrentuser] = useState("");
+  
 
   const [selectedOptions, setSelectedOptions] = useState({
     florists : null,
@@ -29,6 +31,11 @@ const TravelOptions = () => {
     }));
   };
 
+  const users = [
+    { lname: "Jean", fname: "Picard", profile: "Ultra-Rich", preferences: "Indian Food, Persian Food", airlineClass: "Business Class", hotelRating: "4,5" },
+    { lname: "James", fname: "Kirk", profile: "Mass Affluent", preferences: "American Food, Sushi Food", airlineClass: "Economy", hotelRating: "3,4" },
+    { lname: "Kathryn", fname: "Janeway", profile: "Student", preferences: "Mexican Food, Chinese Food", airlineClass: "Economy", hotelRating: "2,3" }
+  ];
 
   const containerStyle = {
     display: 'flex',
@@ -46,11 +53,12 @@ const TravelOptions = () => {
 
   const inputStyle = {
     border: 'none',
-    padding: '10px 15px',
+    //padding: '10px 15px',
     fontSize: '1rem',
     flexGrow: '1',
     borderRadius: '25px 0 0 25px',
     outline: 'none',
+    fontFamily:'emoji',
   };
 
   const buttonStyle = {
@@ -83,9 +91,40 @@ const TravelOptions = () => {
 
   const sendMessage = async () => {
     if (!input.trim()) return;
-    
+    //setExtractedName(null);
     clearSearchResults();
-    const newMessage = { role: "user", content: input+', provide the best options in JSON Array format with name, type, address, cuisine, rating, price with parent as valentine_date_options and i want them categorized as florists, restaurants, hotels and 3 resuts each' };
+    console.log(input);
+    var firstName = '';
+    const match = input.match(/\(([^)]+)\)/); // Extracts text inside ()
+    if (match) {
+      const fullName = match[1].trim(); // Extracted name inside ()
+      const splitName = fullName.split(" "); // Split into words
+
+      firstName = splitName.length > 0 ? splitName[0] : fullName; // Handle single-word names
+      console.log("First word:", firstName); // Log first word
+      setCurrentuser(firstName);
+      //setExtractedName(firstName); // Store full extracted name
+    } else {
+      console.log("No name found in parentheses.");
+      //setExtractedName("No name found.");
+    }
+
+    //setExtractedName(match ? match[1] : " ");
+    console.log('>'+firstName+'<');
+
+    //const splitWords = extractedName.toLocaleLowerCase().trim().split(" "); // Split by space
+
+   // const foundUser = users.find(user => user.name.toLowerCase().includes(extractedName.toLowerCase()));
+
+    const foundUser = users.find(user => 
+      user.fname.toLowerCase().includes(firstName.toLowerCase()) || 
+      user.lname.toLowerCase().includes(firstName.toLowerCase())
+    );
+
+    console.log(foundUser);
+
+    const newMessage = { role: "user", content: input+' Profile: '+foundUser.profile+', Preferences: '+foundUser.preferences+', Airline Fare Class: '+foundUser.airlineClass+', Hotel Star Rating: '+foundUser.hotelRating+ ', provide the options in JSON Array format with name, type, address, cuisine, rating, price with parent as valentine_date_options and categorize them as florists, restaurants, hotels and 3 resuts each with actual cost to book' };
+    console.log("newMessage:", newMessage); 
     setMessages([newMessage]);
     setInput("");
     setShowData(true);
@@ -127,7 +166,7 @@ const TravelOptions = () => {
       {data !=null && showData ? (
       <div className="card-deck">
           <div className="custom-class">
-          <h3  style={{color: 'red', fontSize: 1 + 'em', textAlign:'center'}} >Here are the Valentine Options to choose</h3>
+          <h3  style={{color: 'red', fontSize: 1 + 'em', textAlign:'center'}} >{currentuser}, Here are the Options to choose</h3>
           <p className="text-gray-500 mb-7" style={{fontSize: 0.65 + 'em', textAlign:'center'}}>Please select the relevant options and click on book</p>
           <div style={{display:'flex', flexDirection:'row'}}>
           {/* Florists */}
@@ -190,7 +229,7 @@ const TravelOptions = () => {
         <div className='final-regn' >
           <div className="card-deck" style={{justifyContent:'space-evenly'}}>
           <div className="custom-class" style={containerStyle} >
-          <h3  style={{color: 'red', fontSize: 1 + 'em', textAlign:'center'}} >Please find your bookings for the trip</h3>
+          <h3  style={{color: 'red', fontSize: 1.75 + 'em', textAlign:'center'}} >{currentuser} - Please find your bookings for the trip</h3>
           <div className='card'  >
             {selectedOptions.florists !==null && selectedOptions.florists >-1 ? (
             <div className="custom-box" >
