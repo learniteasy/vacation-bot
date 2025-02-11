@@ -123,7 +123,7 @@ const TravelOptions = () => {
 
     console.log(foundUser);
 
-    const newMessage = { role: "user", content: input+' Profile: '+foundUser.profile+', Preferences: '+foundUser.preferences+', Airline Fare Class: '+foundUser.airlineClass+', Hotel Star Rating: '+foundUser.hotelRating+ ', provide the options in JSON Array format with name, type, address, cuisine, rating, price with parent as valentine_date_options and categorize them as florists, restaurants, hotels and 3 resuts each with actual cost to book' };
+    const newMessage = { role: "user", content: input+'in in Palo Alto, Profile: '+foundUser.profile+', Preferences: '+foundUser.preferences+', Airline Fare Class: '+foundUser.airlineClass+', Hotel Star Rating: '+foundUser.hotelRating+ ', provide the options in JSON Array format with name, type, address, cuisine, rating, price with parent as valentine_date_options and categorize them as florists, restaurants, hotels and 3 resuts each with actual cost to book' };
     console.log("newMessage:", newMessage); 
     setMessages([newMessage]);
     setInput("");
