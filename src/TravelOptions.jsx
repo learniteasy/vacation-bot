@@ -32,9 +32,9 @@ const TravelOptions = () => {
   };
 
   const users = [
-    { lname: "Jean", fname: "Picard", profile: "Ultra-Rich", preferences: "Indian Food, Persian Food", airlineClass: "Business Class", hotelRating: "4,5" },
-    { lname: "James", fname: "Kirk", profile: "Mass Affluent", preferences: "American Food, Sushi Food", airlineClass: "Economy", hotelRating: "3,4" },
-    { lname: "Kathryn", fname: "Janeway", profile: "Student", preferences: "Mexican Food, Chinese Food", airlineClass: "Economy", hotelRating: "2,3" }
+    { lname: "Jean", fname: "Picard", profile: "Ultra-Rich", preferences: "[Indian Food, Persian Food]", airlineClass: "Business Class", hotelRating: "4,5" },
+    { lname: "James", fname: "Kirk", profile: "Mass Affluent", preferences: "[American Food, Sushi Food]", airlineClass: "Economy", hotelRating: "3,4" },
+    { lname: "Kathryn", fname: "Janeway", profile: "Student", preferences: "[Mexican Food, Chinese Food]", airlineClass: "Economy", hotelRating: "2,3" }
   ];
 
   const containerStyle = {
@@ -123,7 +123,7 @@ const TravelOptions = () => {
 
     console.log(foundUser);
 
-    const newMessage = { role: "user", content: input+'in in Palo Alto, Profile: '+foundUser.profile+', Preferences: '+foundUser.preferences+', Airline Fare Class: '+foundUser.airlineClass+', Hotel Star Rating: '+foundUser.hotelRating+ ', provide the options in JSON Array format with name, type, address, cuisine, rating, price with parent as valentine_date_options and categorize them as florists, restaurants, hotels and 3 resuts each with actual cost to book' };
+    const newMessage = { role: "user", content: input+'in in Palo Alto CA, Profile: '+foundUser.profile+', Preferences: '+foundUser.preferences+', Airline Fare Class: '+foundUser.airlineClass+', Hotel Star Rating: '+foundUser.hotelRating+ ' provide the options in JSON Array format with name, type, address, cuisine, rating, price with parent as valentine_date_options and categorize them as florists, restaurants, hotels and 3 resuts each with actual cost to book' };
     console.log("newMessage:", newMessage); 
     setMessages([newMessage]);
     setInput("");
@@ -164,7 +164,7 @@ const TravelOptions = () => {
   return (
     <div className='search-results'>
       {data !=null && showData ? (
-      <div className="card-deck">
+      <div className="card-deck" style={{flexFlow:'column'}}>
           <div className="custom-class">
           <h3  style={{color: 'red', fontSize: 1 + 'em', textAlign:'center'}} >{currentuser}, Here are the Options to choose</h3>
           <p className="text-gray-500 mb-7" style={{fontSize: 0.65 + 'em', textAlign:'center'}}>Please select the relevant options and click on book</p>
