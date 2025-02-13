@@ -123,11 +123,11 @@ const TravelOptions = () => {
 
     console.log(foundUser);
 
-    const newMessage = { role: "user", content: input+'in in Palo Alto CA, Profile: '+foundUser.profile+', Preferences: '+foundUser.preferences+', Airline Fare Class: '+foundUser.airlineClass+', Hotel Star Rating: '+foundUser.hotelRating+ ' provide the options in JSON Array format with name, type, address, cuisine, rating, price with parent as valentine_date_options and categorize them as florists, restaurants, hotels and 3 resuts each with actual cost to book' };
+    const newMessage = { role: "user", content: input+' in in Palo Alto CA, Profile: '+foundUser.profile+', Preferences: '+foundUser.preferences+', Airline Fare Class: '+foundUser.airlineClass+', Hotel Star Rating: '+foundUser.hotelRating+ ' provide the options in JSON Array format with id, name, type, address, cuisine, rating, price with parent as valentine_date_options and categorize them as florists, restaurants, hotels and 3 resuts each with actual cost to book' };
     console.log("newMessage:", newMessage); 
     setMessages([newMessage]);
     setInput("");
-    setShowData(true);
+    //setShowData(true);
     selectedOptions.florists=null;
     selectedOptions.restaurants=null;
     selectedOptions.hotels =null;
@@ -143,17 +143,17 @@ const TravelOptions = () => {
         body: JSON.stringify({
           model: "gpt-4o-mini",
           response_format: {"type": "json_object"}, // Properly included in body
-          messages: [...messages, newMessage],
-          temperature :0.9,
+          max_tokens:1000,
+          messages: [ newMessage],
+          temperature :0,
         }),
       });
-      
+      console.log('messages >> '+messages)
       const data1 = await response.json();
      
-      //setData(data.choices[0].message.content || []);  // Store the relevant part of response 
       const jsonResponse = JSON.parse(data1.choices[0].message.content);
       setData(jsonResponse.valentine_date_options);  // Store the relevant part of response 
-      console.log(data)
+      console.log(jsonResponse.valentine_date_options)
       setShowData(true);
     } catch (error) {
       console.error("Error fetching response: ", error);
